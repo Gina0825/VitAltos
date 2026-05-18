@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Doctora Katy</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#FFF7F3;
+    color:#444;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#F8C8DC,#B8E8FC);
+    padding:60px 20px;
+    text-align:center;
+    position:relative;
+}
+
+header h1{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+header p{
+    font-size:20px;
+}
+
+.hero-btn{
+    margin-top:20px;
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.05);
+}
+
+/* LOGO */
+
+.logo{
+    position:absolute;
+    top:20px;
+    left:20px;
+    width:90px;
+    height:90px;
+    border-radius:15px;
+    overflow:hidden;
+    border:3px dashed white;
+    background:white;
+}
+
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* CONTENEDORES */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    margin-top:40px;
+}
+
+.section{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom:40px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* INPUTS */
+
+input, select{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+/* BOTONES */
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:12px;
+    background:#B8E8FC;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#99d8f5;
+}
+
+/* RESULTADOS */
+
+.resultado{
+    margin-top:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    line-height:1.5;
+}
+
+/* TARJETAS */
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.card{
+    width:220px;
+    background:#F8C8DC;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+/* VACUNAS */
+
+.vacunas-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+    margin-top:20px;
+}
+
+.vacunas-grid label{
+    background:#F8F8F8;
+    padding:12px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* GALERIA */
+
+.galeria{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.foto{
+    width:220px;
+    height:150px;
+    border-radius:15px;
+    overflow:hidden;
+    border:3px dashed #ccc;
+    background:#fafafa;
+}
+
+.foto img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* BOTON FLOTANTE */
+
+.flotante{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:none;
+    background:#F8C8DC;
+    font-size:35px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* PANEL EXTRA */
+
+.extra{
+    display:none;
+    position:fixed;
+    top:0;
+    right:0;
+    width:320px;
+    height:100%;
+    background:white;
+    box-shadow:-4px 0 10px rgba(0,0,0,0.2);
+    padding:25px;
+    overflow-y:auto;
+}
+
+.extra h2{
+    margin-bottom:20px;
+}
+
+.extra p{
+    margin-bottom:15px;
+    line-height:1.5;
+}
+
+/* FOOTER */
+
+footer{
+    background:#B8E8FC;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:38px;
+    }
+
+    .extra{
+        width:100%;
+    }
+
+    .logo{
+        width:70px;
+        height:70px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <!-- LOGO -->
+    <div class="logo">
+
+        <!-- CAMBIA logo.png POR TU LOGO -->
+
+        <img src="logo.png" alt="Logo">
+
+    </div>
+
+    <h1>Calculador IMC</h1>
+
+    <p>Conoce mejor tu salud y alimentación</p>
+
+    <button class="hero-btn" onclick="scrollToIMC()">
+        Calcular Ahora
+    </button>
+
+</header>
+
+<!-- CONTENIDO -->
+
+<div class="container">
+
+    <!-- IMC -->
+
+    <section class="section" id="imc">
+
+        <h2>Calculadora IMC</h2>
+
+        <select id="sexo">
+            <option value="">Selecciona tu sexo</option>
+            <option value="hombre">Masculino</option>
+            <option value="mujer">Femenino</option>
+        </select>
+
+        <input type="number" id="edad" placeholder="Edad en años">
+
+        <input type="number" step="0.01" id="altura"
+        placeholder="Altura en metros (Ej: 1.70)">
+
+        <input type="number" id="peso"
+        placeholder="Peso en kilogramos">
+
+        <button onclick="calcularIMC()">
+            Calcular IMC
+        </button>
+
+        <div class="resultado" id="resultadoIMC"></div>
+
+    </section>
+
+    <!-- INFORMACION -->
+
+    <section class="section">
+
+        <h2>Información Alimenticia</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Diabéticos</h3>
+                <p>
+                    Dieta baja en azúcares y alimentos procesados.
+                    Ejemplo Desayuno: Avena con leche de almendras, nueces y fresas. Té verde sin azúcar.
+Almuerzo: Pechuga de pollo a la parrilla con ensalada de quinoa y vegetales. Manzana como postre.
+Cena: Ensalada de pollo con espinacas, nueces y queso feta. Té de menta.
+Snack: Palitos de zanahoria con hummus.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Niños</h3>
+                <p>
+                    Alimentación rica en calcio y vitaminas.
+                    Ejemplo Desayuno, Leche entera de vaca, pan con aceite de oliva y fruta.
+Media mañana, Fruta Bocadillo Fruta o bocadillo de pan integral. 
+Comida, Brocoli Patata Puré de espinacas y patata. Icono Albóndigas Salsa Calabaza Albóndigas con salsa de calabaza
+Merienda, Yogurt Frutos Secos Yogur natural sin azúcar y frutos secos.
+Cena Tortilla verduras Tortilla con verduras, Fruta y leche entera de vaca.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Embarazadas</h3>
+                <p>
+                    Mayor consumo de hierro y proteínas.
+                    Ejemplo Desayuno: batido de plátano y una tostada de pan integral con aguacate.
+Almuerzo: salteado de verduras con arroz integral y merluza al horno con eneldo.
+Cena: patatas y tomate asados al horno y una tortilla de dos huevos.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Adultos Mayores</h3>
+                <p>
+                    Comidas ligeras y nutritivas.
+                    Ejemplo Desayuno: Una taza de avena con manzana y nueces, y un vaso de jugo de naranja.
+Comida: Pescado al horno con limón y hierbas, quinoa y brócoli al vapor.
+Cena: Tortilla de espinacas con un vaso de leche desnatada.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CALORIAS -->
+
+    <section class="section">
+
+        <h2>Calculadora de Calorías</h2>
+
+        <select id="sexoCal">
+            <option value="">Selecciona tu sexo</option>
+            <option value="hombre">Masculino</option>
+            <option value="mujer">Femenino</option>
+        </select>
+
+        <input type="number" id="edadCal"
+        placeholder="Edad en años">
+
+        <input type="number" step="0.01" id="alturaCal"
+        placeholder="Altura en metros">
+
+        <input type="number" id="pesoCal"
+        placeholder="Peso en kg">
+
+        <button onclick="calcularCalorias()">
+            Calcular Calorías
+        </button>
+
+        <div class="resultado" id="resultadoCalorias"></div>
+
+    </section>
+
+    <!-- VACUNAS -->
+
+    <section class="section" id="vacunas">
+
+        <h2>Cartilla de Vacunación Infantil</h2>
+
+        <p style="text-align:center; margin-bottom:20px;">
+            Ingresa la edad del niño y selecciona las vacunas que ya recibió.
+        </p>
+
+        <input type="number" id="edadNino"
+        placeholder="Edad del niño en meses">
+
+        <div class="vacunas-grid">
+
+            <label>
+                <input type="checkbox" value="BCG">
+                BCG
+            </label>
+
+            <label>
+                <input type="checkbox" value="Hepatitis B">
+                Hepatitis B
+            </label>
+
+            <label>
+                <input type="checkbox" value="Pentavalente">
+                Pentavalente
+            </label>
+
+            <label>
+                <input type="checkbox" value="Rotavirus">
+                Rotavirus
+            </label>
+
+            <label>
+                <input type="checkbox" value="Neumocócica">
+                Neumocócica
+            </label>
+
+            <label>
+                <input type="checkbox" value="Influenza">
+                Influenza
+            </label>
+
+            <label>
+                <input type="checkbox" value="SRP">
+                SRP
+            </label>
+
+            <label>
+                <input type="checkbox" value="DPT">
+                DPT
+            </label>
+
+        </div>
+
+        <button onclick="revisarVacunas()">
+            Revisar Vacunas
+        </button>
+
+        <div class="resultado" id="resultadoVacunas"></div>
+
+    </section>
+
+    <!-- GALERIA -->
+
+    <section class="section">
+
+        <h2>Galería</h2>
+
+        <div class="galeria">
+
+            <div class="foto">
+
+                <!-- CAMBIA foto1.jpg -->
+
+                <img src="foto 1.jpg" alt="">
+
+            </div>
+
+            <div class="foto">
+
+                <img src="foto 2.jpg" alt="">
+
+            </div>
+
+            <div class="foto">
+
+                <img src="yop.jpg" alt="">
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- PANEL EXTRA -->
+
+<div class="extra" id="panelExtra">
+
+    <h2>Consejos Saludables</h2>
+
+    <p>🍎 Consumir frutas y verduras diariamente ayuda a mejorar la salud.</p>
+
+    <p>💧 Mantente hidratado tomando suficiente agua.</p>
+
+    <p>🥗 Mantén una alimentación balanceada y variada.</p>
+
+    <p>🏃 Realiza ejercicio frecuentemente.</p>
+
+    <p>😴 Dormir bien ayuda al metabolismo y recuperación.</p>
+
+</div>
+
+<!-- BOTON FLOTANTE -->
+
+<button class="flotante" onclick="mostrarPanel()">
++
+</button>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>Consultorio VitAltos</p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* SCROLL */
+
+function scrollToIMC(){
+
+    document.getElementById("imc")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+/* IMC */
+
+function calcularIMC(){
+
+    let altura =
+    parseFloat(document.getElementById("altura").value);
+
+    let peso =
+    parseFloat(document.getElementById("peso").value);
+
+    let imc =
+    peso / (altura * altura);
+
+    let mensaje = "";
+
+    if(imc < 18.5){
+
+        mensaje = "Bajo peso";
+
+    }
+
+    else if(imc >= 18.5 && imc < 25){
+
+        mensaje = "Peso normal";
+
+    }
+
+    else if(imc >= 25 && imc < 30){
+
+        mensaje = "Sobrepeso";
+
+    }
+
+    else{
+
+        mensaje = "Obesidad";
+
+    }
+
+    document.getElementById("resultadoIMC")
+    .innerHTML =
+    "Tu IMC es: " +
+    imc.toFixed(2) +
+    "<br>" +
+    mensaje;
+
+}
+
+/* CALORIAS */
+
+function calcularCalorias(){
+
+    let sexo =
+    document.getElementById("sexoCal").value;
+
+    let edad =
+    parseInt(document.getElementById("edadCal").value);
+
+    let altura =
+    parseFloat(document.getElementById("alturaCal").value);
+
+    let peso =
+    parseFloat(document.getElementById("pesoCal").value);
+
+    altura = altura * 100;
+
+    let calorias = 0;
+
+    if(sexo == "hombre"){
+
+        calorias =
+        88.36 +
+        (13.4 * peso) +
+        (4.8 * altura) -
+        (5.7 * edad);
+
+    }
+
+    else{
+
+        calorias =
+        447.6 +
+        (9.2 * peso) +
+        (3.1 * altura) -
+        (4.3 * edad);
+
+    }
+
+    let quemar =
+    calorias * 0.20;
+
+    document.getElementById("resultadoCalorias")
+    .innerHTML =
+
+    "🔥 Debes consumir aproximadamente: " +
+    calorias.toFixed(0) +
+    " calorías al día." +
+
+    "<br><br>" +
+
+    "🏃 Para mantenerte saludable deberías quemar aproximadamente: " +
+    quemar.toFixed(0) +
+    " calorías diarias.";
+
+}
+
+/* VACUNAS */
+
+function revisarVacunas(){
+
+    let edad =
+    parseInt(document.getElementById("edadNino").value);
+
+    let seleccionadas =
+    document.querySelectorAll(
+    '#vacunas input[type="checkbox"]:checked'
+    );
+
+    let vacunas = [];
+
+    seleccionadas.forEach(v => {
+
+        vacunas.push(v.value);
+
+    });
+
+    let necesarias = [];
+
+    /* CARTILLA MEXICANA */
+
+    if(edad >= 0){
+
+        necesarias.push("BCG");
+        necesarias.push("Hepatitis B");
+
+    }
+
+    if(edad >= 2){
+
+        necesarias.push("Pentavalente");
+        necesarias.push("Rotavirus");
+        necesarias.push("Neumocócica");
+
+    }
+
+    if(edad >= 6){
+
+        necesarias.push("Influenza");
+
+    }
+
+    if(edad >= 12){
+
+        necesarias.push("SRP");
+
+    }
+
+    if(edad >= 48){
+
+        necesarias.push("DPT");
+
+    }
+
+    let faltantes = [];
+
+    necesarias.forEach(vacuna => {
+
+        if(!vacunas.includes(vacuna)){
+
+            faltantes.push(vacuna);
+
+        }
+
+    });
+
+    let resultado =
+    document.getElementById("resultadoVacunas");
+
+    if(faltantes.length == 0){
+
+        resultado.innerHTML =
+        "✅ El niño va al corriente con sus vacunas.";
+
+    }
+
+    else{
+
+        resultado.innerHTML =
+        "⚠️ Al niño le faltan estas vacunas:<br><br>" +
+        faltantes.join(", ");
+
+    }
+
+}
+
+/* PANEL */
+
+function mostrarPanel(){
+
+    let panel =
+    document.getElementById("panelExtra");
+
+    if(panel.style.display == "block"){
+
+        panel.style.display = "none";
+
+    }
+
+    else{
+
+        panel.style.display = "block";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
